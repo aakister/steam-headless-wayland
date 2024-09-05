@@ -31,8 +31,8 @@ export XDG_CONFIG_HOME="${USER_HOME:?}/.config"
 export XDG_DATA_HOME="${USER_HOME:?}/.local/share"
 
 # EXECUTE PROCESS:
-# Wait for the X server to start
-wait_for_x
+# Wait for the Wayland server to start
+wait_for_wayland
 # Install/Upgrade user apps
 if [[ ! -f /tmp/.desktop-apps-updated ]]; then
     xterm -geometry 200x50+0+0 -ls -e /bin/bash -c "
@@ -44,8 +44,8 @@ if [[ ! -f /tmp/.desktop-apps-updated ]]; then
 fi
 
 # Run the desktop environment
-echo "**** Starting Xfce4 ****"
-/usr/bin/startxfce4 &
+echo "**** Starting Wayfire ****"
+/usr/bin/start-wayfire &
 desktop_pid=$!
 touch /tmp/.started-desktop
 
